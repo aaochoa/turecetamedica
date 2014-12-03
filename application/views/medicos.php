@@ -59,6 +59,7 @@
                     <li><a href="#">Mi receta médica</a></li>
                     <li><a href="<?php echo base_url()."main/solicitudesGU";?>">Solicitudes generales</a></li>
                     <li class="divider"></li>
+                    <li><a href="<?php echo base_url()."main/changepass";?>">Cambiar clave</a></li>
                     <li><a href="<?php echo base_url()."main/logout";?>">cerrar sesión</a></li>
                   </ul>
                 </li>

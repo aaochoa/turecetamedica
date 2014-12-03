@@ -63,6 +63,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Información de la Cuenta <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="<?php echo base_url()."main/perfil";?>">Perfil</a></li>
+                    <li><a href="<?php echo base_url()."main/changepass";?>">Cambiar clave</a></li>
                     <li><a href="<?php echo base_url()."main/logout";?>">cerrar sesión</a></li>
                   </ul>
                 </li>  

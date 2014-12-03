@@ -217,6 +217,7 @@ class Model_users extends CI_Model{
 			return false;
 		}
 	}
+/**************************************************************************************************************************
 
 /******************************************************
 /* Funcion que agrega el usuario cuando la solicitud es aceptada
@@ -607,4 +608,33 @@ class Model_users extends CI_Model{
 		}
 	}
 
+/******************************************************
+/* Función para determinar si el password es el correcto
+********************************************************/ 
+	public function is_it_correct (){
+
+		$this->db->where('idUsers',$this->session->userdata('idUsers'));
+		$this->db->where('passW',md5($this->input->post('passW')));
+
+		$query = $this->db->get('logIn');
+
+		if ($query->num_rows()==1) {
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+/******************************************************
+/* Función para almacenar el nuevo password del usuario
+********************************************************/ 
+public function change_pass ()
+	{
+		$data = array(
+			'passW' => md5($this->input->post('npassW'))
+			);
+		$this->db->where('idUsers',$this->session->userdata('idUsers'));
+		$this->db->update('logIn', $data);
+	}
 }

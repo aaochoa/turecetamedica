@@ -58,8 +58,16 @@ class Main extends CI_Controller {
 	}
 
 	public function thanks ()
-	{
+	{	
 		$this->load->view('thanks');
+	}
+
+	public function changepass ()
+	{
+		if ($this->session->userdata('is_logged_in'))
+		{
+			$this->load->view('changepass');
+		}
 	}
 
 	public function pacientesact()
@@ -481,7 +489,22 @@ class Main extends CI_Controller {
      		return false;
     	}
 
-	}	
+	}
+
+/******************************************************
+/* Función encargada de desactivar la cuenta de un usuario
+********************************************************/ 
+	public function desactivarCuenta ()
+	{
+		$this->load->model('model_users');
+
+		$this->model_users->desactiva_cuenta();
+		redirect('main/members','refresh');
+
+		
+	}
+
+/**************************************************************************************************************************
 
 /******************************************************
 /* Función encargada de manejar las solicitudes generales de los usuarios registrados
@@ -791,24 +814,47 @@ class Main extends CI_Controller {
 			}
 		}
 	}
+
 /******************************************************
-/* Función para gestionar la edición del la foto de perfil de un usuario
+/* Función para realizar el cambio de contraseña
 ********************************************************/ 
-	public function editprofilepic ()
+	public function new_password ()
 	{
-		
+		$this->load->library('form_validation');
+		$this->load->model('model_users');
+
+		$this->form_validation->set_rules('passW','Clave','required|trim|md5|callback_validate_password|xss_clean');
+		$this->form_validation->set_rules('npassW','Nueva Clave','required|trim|xss_clean');
+		$this->form_validation->set_rules('cpassW','Confirme la Clave','required|trim|xss_clean');
+	
+		if ($this->form_validation->run()) 
+		{
+			$this->model_users->change_pass();
+			redirect('main/members','refresh');
+		} else 
+		{
+			$this->load->view('changepass');
+
+		}
+
 	}
+
+
 /******************************************************
-/* Función encargada de desactivar la cuenta de un usuario
+/* Función encargada de validar los datos ingresados en el formulario de cambio de contraseña
 ********************************************************/ 
-	public function desactivarCuenta ()
+	public function validate_password ()
 	{
 		$this->load->model('model_users');
 
-		$this->model_users->desactiva_cuenta();
-		redirect('main/members','refresh');
-
-		
+		if ($this->model_users->is_it_correct()) 
+		{
+			return true;
+		} else 
+		{
+			$this->form_validation->set_message('validate_password','La clave ingresada no coincide con la clave del usuario');
+			return false;
+		}
 	}
 
 }

@@ -74,10 +74,14 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pacientes<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="<?php echo base_url()."main/pacientesact";?>">Pacientes activos</a></li>
+                    <li><a href="<?php echo base_url()."main/pacientesinact";?>">Usuarios inactivos</a></li>
                   </ul>
                 </li>
-                 <li><a href="<?php echo base_url()."main/pacientesinact";?>">Usuarios inactivos</a></li>
-                <li><a href="<?php echo base_url()."main/logout";?>">cerrar sesión</a></li>  
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                   <li><a href="<?php echo base_url()."main/logout";?>">Cerrar sesión</a></li>
+                   <li><a href="<?php echo base_url()."main/changepass";?>">Cambiar clave</a></li>   
               </ul>
             </div>
           </div>

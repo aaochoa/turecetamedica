@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- /******************************************************* 
  Autor : LABG1E2
- Tipo de programa: "Vista de los grupos de apoyo disponibles"
+ Tipo de programa: "Vista para el cambio de contraseña de todos los usuarios registrados"
  Lenguaje: PHP, HTML, CSS, JAVASCRIPT
  Descripción: Tu Receta Médica
 ********************************************************  -->
@@ -21,7 +21,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="../assets/css/carousel.css" rel="stylesheet">
+    <link href="../assets/css/login.css" rel="stylesheet">
   </head>
   
 <!-- NAVBAR
@@ -57,65 +57,26 @@
       </div>
     </div>
 
-    <div class="container">
+ <div class="container">
 
-  <div class="page-header">
-        <h1><br><br>Grupos de apoyo</h1>
-  </div>
+      <form class="well" action="<?php echo base_url()."main/new_password";?>" method="post" accept-charset="utf-8">
+        <h2 class="form-signin-heading">Cambiar Clave</h2>
+        <?php echo validation_errors(); ?>
+        <label>Clave:</label>
+        <input type="password" class="form-control" name="passW" placeholder="Clave" required>
+        <label>Nueva Clave:</label>
+        <input type="password" class="form-control" name="npassW" placeholder="Nueva Clave" required>
+        <label>Confirme la Clave:</label>
+        <input type="password" class="form-control" name="cpassW" placeholder="Confirme la Clave" required>
+        <button class="btn btn-large btn-primary" type="submit">Cambiar Clave</button>
+        
+      </form>
 
-    
-      <div class="bs-docs-example">
-            <table class="table table-striped" id="myTable">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nombre del grupo</th>
-                  <th>Enfermedad</th>
-                  <th>Medico/Profesional encargado</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                <?php if(!empty($query)){ ?>
-                  <?php foreach($query as $row){ ?>
-                  <tr>
-                  <td><?php echo $row->idgruposapoyo;?></td>
-                  <td><?php echo $row->nombregrupo;?></td>
-                  <td><?php echo $row->enfermedad;?></td>
-                  <td><?php echo $row->profesional;?></td>
-                </tr>
-                <?php } ?>
-                <?php } ?>
-              </tbody>
-            </table>
-          </div>
-      </div>
-    
-    
-      
-<!-- Wrap the rest of the page in another container to center all the content. -->
+    </div> <!-- /container -->
 
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-6">
-          <a class="twitter-timeline" href="https://twitter.com/MinSaludCol" data-widget-id="520359799821574144">Tweets by @MinSaludCol</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          <h4>Información minuto a minuto proporcionada por el ministerio de salud</h4>
-        </div><!-- /.col-lg-6 -->
-        <div class="col-lg-6">
-         <center><img class="img-circle" src="../assets/img/examples/minsalud.jpeg" alt="Generic placeholder image" style="width: 250px; height: 250px;"></center>
-          <h2><center> MinSalud </center></h2>
-          <p>Para mayor información acerca del estado del sisrowalud visite la página del Ministerio de salud.</p>
-          <p><center><a class="btn btn-primary" href="http://www.minsalud.gov.co" role="button">Ir al sitio &raquo;</a></center></p>
-        </div><!-- /.col-lg-6 -->
-      </div><!-- /.row -->
 
 
       <!-- FOOTER -->
-      
-        
        <div id="footer">
       <div class="container">
         <p><a href="#"><br>Tu Receta Médica</a>, by <a href="#">LabG1E2</a>.</p>
